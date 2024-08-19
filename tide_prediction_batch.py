@@ -39,4 +39,4 @@ for con in cons: # loop thru every con file (con = con file, cons = list of con 
     pfs.write(f"{con.stem}.pfs")
 
 # then, run this command in cmd:
-# "C:\Program Files (x86)\DHI\MIKE Zero\2024\bin\x64\tidhpc.exe" PFS_FILE_NAME.pfs
+# for /f %f in ('dir /b') do ("C:\Program Files (x86)\DHI\MIKE Zero\2024\bin\x64\tidhpc.exe" %f)
