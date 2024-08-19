@@ -35,6 +35,7 @@ for con in cons: # loop thru every con file (con = con file, cons = list of con 
             pfs.TIDHPC.GeneralParameters.StationName = s.StationName
             pfs.TIDHPC.GeneralParameters.StationLatitude = s.StationLatitude
             pfs.TIDHPC.GeneralParameters.StationLongitude = s.StationLongitude
+    pfs.TIDHPC.Output.OutputFileName = rf"PATH TO FOLDER CONTAINING YOUR TIDE PREDICTION .DFS0 FILES\{con.stem}.pfs"
     pfs.write(f"{con.stem}.pfs")
 
 # then, run this command in cmd:
