@@ -1,0 +1,22 @@
+// Created    : 2024-08-16 14:11:16
+// Executable : C:\Program Files (x86)\DHI\MIKE Zero\2024\bin\x64\tidhpc.exe
+// Version    : 22.0.3.17314
+
+[TIDHPC]
+    [GeneralParameters]
+        StationName = BND-10
+        StationLatitude = 1.28
+        StationLongitude = 104.3
+        StationTimeZone = 0
+        PredictionMethod = 0
+        ExtremeAnalysis = 0
+        PredictionPeriodInterval = 0.25
+        PredictionPeriodStart = 2017, 7, 15, 0, 0, 0 # please change this on your own
+        PredictionPeriodStop = 2017, 8, 15, 0, 0, 0 # please change this on your own
+    EndSect // GeneralParameters
+    [Constituents]
+    EndSect // Constituents
+    [Output]
+        OutputFileName = "PATH TO RESULTS FOLDER\file_name.dfs0"
+        OutputFileTitle = Predicted tide level
+    EndSect // Output
