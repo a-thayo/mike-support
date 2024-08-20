@@ -1,7 +1,8 @@
-pfs = mikeio.read_pfs("TEMPLATE.log") # read template pfs for tidal prediction
+pfs = mikeio.read_pfs("PFS_TEMPLATE_TIDHPC.log") # read template pfs for tidal prediction
 cons = list(Path.cwd().glob(r"PATH TO FOLDER CONTAINING ALL YOUR .CON FILES"))
 b = open(r"../BOUNDARY-COORDS.txt", 'r') # text files containing station, latitude, and longitude
 d_db = {}
+# CREATE A DICTIONARY OF STATION NAME, LAT, LONG
 for line in b:
     lst = line.split()
     db = dict(
@@ -12,6 +13,7 @@ for line in b:
 for con in cons: # loop thru every con file (con = con file, cons = list of con files)
     c = open(con, 'r')
     no_sect = 0
+    # CREATE A NEW DICTIONARY FOR EACH CONSTITUENT
     for line in c:
         lst = line.split()
         if len(lst)==4:
@@ -23,9 +25,11 @@ for con in cons: # loop thru every con file (con = con file, cons = list of con 
             no_sect+=1
         else:
             continue
+        # ADD CONSTITUENT INFO INTO PFS FILE
         if isinstance(dc.get("Phase"), float) and no_sect>0:
             s = mikeio.PfsSection(dc)
             pfs.TIDHPC.Constituents[f"Constituent_{no_sect}"] = s
+    # specific to my case: MATCH D_DB.KEYS (aka station name) WITH FILE NAME
     pattern = r'_(.*?)_'
     match = re.search(pattern, con.stem)
     if match:
@@ -40,3 +44,4 @@ for con in cons: # loop thru every con file (con = con file, cons = list of con 
 
 # then, run this command in cmd:
 # for /f %f in ('dir /b') do ("C:\Program Files (x86)\DHI\MIKE Zero\2024\bin\x64\tidhpc.exe" %f)
+# feel free to delete the resulting log files
